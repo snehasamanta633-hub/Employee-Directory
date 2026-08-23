@@ -1,0 +1,208 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #dbeafe, #e0e7ff, #f5d0fe);
+  color: #1e293b;
+}
+
+/* Main Container */
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 45px auto;
+  padding: 35px;
+  border-radius: 20px;
+
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+
+  box-shadow: 0 20px 45px rgba(30, 41, 59, 0.15);
+}
+
+/* Heading */
+h1 {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 30px;
+  color: #312e81;
+}
+
+h2 {
+  color: #3730a3;
+  margin: 35px 0 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #c7d2fe;
+}
+
+/* Form */
+form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+
+  padding: 25px;
+  border-radius: 15px;
+
+  background: linear-gradient(
+    135deg,
+    #eef2ff,
+    #f5f3ff
+  );
+
+  border: 1px solid #c7d2fe;
+}
+
+input {
+  width: 100%;
+  padding: 14px 16px;
+
+  border: 1px solid #cbd5e1;
+  border-radius: 9px;
+
+  font-size: 15px;
+  outline: none;
+
+  background: white;
+  color: #0047AB;
+  transition: 0.3s;
+}
+
+input:focus {
+  border-color: #6366f1;
+
+  box-shadow:
+    0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+/* Add / Update Button */
+form button {
+  grid-column: 1 / -1;
+
+  padding: 14px;
+
+  border: none;
+  border-radius: 9px;
+
+  background: linear-gradient(
+    135deg,
+    #4f46e5,
+    #7c3aed
+  );
+
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+form button:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 8px 18px rgba(79, 70, 229, 0.3);
+}
+
+/* Employee Card */
+.employee-card {
+  background: rgba(255, 255, 255, 0.95);
+
+  border-radius: 14px;
+
+  padding: 22px;
+  margin-bottom: 16px;
+
+  border: 1px solid #ddd6fe;
+  border-left: 5px solid #6366f1;
+
+  box-shadow:
+    0 8px 20px rgba(79, 70, 229, 0.08);
+
+  transition: 0.3s;
+}
+
+.employee-card:hover {
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 14px 30px rgba(79, 70, 229, 0.15);
+}
+
+.employee-card h3 {
+  color: #312e81;
+  font-size: 21px;
+  margin-bottom: 12px;
+}
+
+.employee-card p {
+  margin: 7px 0;
+  color: #475569;
+  font-size: 15px;
+}
+
+/* Employee Buttons */
+.employee-card button {
+  padding: 9px 18px;
+
+  border: none;
+  border-radius: 7px;
+
+  margin-top: 15px;
+  margin-right: 8px;
+
+  cursor: pointer;
+  font-weight: bold;
+
+  transition: 0.3s;
+}
+
+/* Edit */
+.employee-card button:first-of-type {
+  background: #f59e0b;
+  color: white;
+}
+
+.employee-card button:first-of-type:hover {
+  background: #d97706;
+  transform: translateY(-2px);
+}
+
+/* Delete */
+.employee-card button:last-of-type {
+  background: #ef4444;
+  color: white;
+}
+
+.employee-card button:last-of-type:hover {
+  background: #dc2626;
+  transform: translateY(-2px);
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+  .container {
+    width: 94%;
+    padding: 20px;
+    margin: 20px auto;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  form {
+    grid-template-columns: 1fr;
+  }
+
+  form button {
+    grid-column: auto;
+  }
+}
