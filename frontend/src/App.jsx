@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
 
+const API_URL = "https://employee-directory-hquh.onrender.com/api/employees";
+
 function App() {
   const [name, setName] = useState("");
   const [department, setDepartment] = useState("");
@@ -14,75 +16,52 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // UPDATE EMPLOYEE
-    if (editId) {
-      try {
+    try {
+      if (editId) {
+        // UPDATE
         const response = await axios.put(
-          `http://localhost:5000/api/employees/${editId}`,
+          `${API_URL}/${editId}`,
           {
             name,
             department,
             designation,
-            email
+            email,
           }
         );
 
         console.log(response.data);
-
         alert("Employee updated successfully!");
-
-        // Clear form
-        setName("");
-        setDepartment("");
-        setDesignation("");
-        setEmail("");
-        setEditId(null);
-
-        // Refresh employee list
-        const updatedResponse = await axios.get(
-          "http://localhost:5000/api/employees"
-        );
-
-        setEmployees(updatedResponse.data);
-      } catch (error) {
-        console.log(error);
-        alert("Failed to update employee");
-      }
-
-      return;
-    }
-
-    // ADD NEW EMPLOYEE
-    try {
-      const response = await axios.post(
-        "http://localhost:5000/api/employees",
-        {
+      } else {
+        // ADD
+        const response = await axios.post(API_URL, {
           name,
           department,
           designation,
-          email
-        }
-      );
+          email,
+        });
 
-      console.log(response.data);
-
-      alert("Employee added successfully!");
+        console.log(response.data);
+        alert("Employee added successfully!");
+      }
 
       // Clear form
       setName("");
       setDepartment("");
       setDesignation("");
       setEmail("");
+      setEditId(null);
 
       // Refresh employee list
-      const updatedResponse = await axios.get(
-        "http://localhost:5000/api/employees"
-      );
-
-      setEmployees(updatedResponse.data);
+      const response = await axios.get(API_URL);
+      setEmployees(response.data);
     } catch (error) {
       console.log(error);
-      alert("Failed to add employee");
+
+      if (editId) {
+        alert("Failed to update employee");
+      } else {
+        alert("Failed to add employee");
+      }
     }
   };
 
@@ -97,33 +76,25 @@ function App() {
 
   // Delete Employee
   const handleDelete = async (id) => {
-  try {
-    await axios.delete(
-      `http://localhost:5000/api/employees/${id}`
-    );
+    try {
+      await axios.delete(`${API_URL}/${id}`);
 
-    alert("Employee deleted successfully!");
+      alert("Employee deleted successfully!");
 
-    // Refresh employee list
-    const response = await axios.get(
-      "http://localhost:5000/api/employees"
-    );
-
-    setEmployees(response.data);
-  } catch (error) {
-    console.log(error);
-    alert("Failed to delete employee");
-  }
-};
+      // Refresh employee list
+      const response = await axios.get(API_URL);
+      setEmployees(response.data);
+    } catch (error) {
+      console.log(error);
+      alert("Failed to delete employee");
+    }
+  };
 
   // Fetch all employees
   useEffect(() => {
     const fetchEmployees = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:5000/api/employees"
-        );
-
+        const response = await axios.get(API_URL);
         setEmployees(response.data);
       } catch (error) {
         console.log(error);
@@ -189,6 +160,7 @@ function App() {
             <button onClick={() => handleEdit(employee)}>
               Edit
             </button>
+
             <button onClick={() => handleDelete(employee._id)}>
               Delete
             </button>
