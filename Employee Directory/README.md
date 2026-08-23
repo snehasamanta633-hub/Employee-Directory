@@ -1,39 +1,91 @@
-# Employee Directory
+Employee Directory
 
-## Requirements
-- Node.js installed
-- MongoDB Community Server running locally
+A full-stack Employee Directory application built using React, Node.js, Express.js, and MongoDB.
 
-## 1. Backend
-Open a terminal in the `backend` folder:
+Features
 
-```bash
+- Add a new employee
+- View all employees
+- Edit employee details
+- Delete an employee
+- Store employee data in MongoDB
+- REST API using Express.js
+
+Technologies Used
+
+Frontend
+
+- React
+- Vite
+- Axios
+- CSS
+
+Backend
+
+- Node.js
+- Express.js
+- Mongoose
+- MongoDB Atlas
+
+Project Structure
+
+Employee Directory/
+├── backend/
+│   ├── models/
+│   ├── routes/
+│   ├── server.js
+│   ├── package.json
+│   └── package-lock.json
+│
+├── frontend/
+│   ├── src/
+│   ├── package.json
+│   └── package-lock.json
+│
+├── .gitignore
+├── package.json
+└── README.md
+
+How to Run
+
+1. Backend
+
+Open a terminal inside the "backend" folder:
+
 npm install
-npm start
-```
 
-If `npm start` is not available in the backend package.json, use:
+Create a ".env" file inside the "backend" folder:
 
-```bash
+PORT=5000
+MONGO_URI=your_mongodb_atlas_connection_string
+
+Then start the backend:
+
 node server.js
-```
 
-The backend uses:
-`mongodb://127.0.0.1:27017/employeeDB`
+The backend will run on:
 
-## 2. Frontend
-Open another terminal in the `frontend` folder:
+http://localhost:5000
 
-```bash
+2. Frontend
+
+Open another terminal inside the "frontend" folder:
+
 npm install
 npm run dev
-```
 
-Then open the URL shown by Vite, usually:
-`http://localhost:5173`
+Then open the URL shown by Vite in the terminal.
 
-## Important
-The ZIP intentionally does NOT include `node_modules`.
-Run `npm install` once on the computer where the project is being run.
+MongoDB Atlas
 
-The MongoDB database itself is not included in this ZIP. MongoDB must be installed and running locally.
+This project uses MongoDB Atlas for database storage.
+
+The MongoDB connection string is stored in the ".env" file and is not included in the GitHub repository for security.
+
+Important
+
+Do not upload ".env" or "node_modules" to GitHub.
+
+Author
+
+Sneha Samanta
