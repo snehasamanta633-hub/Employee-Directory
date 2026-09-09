@@ -41,7 +41,9 @@ router.post("/", async (req, res) => {
       name,
       department,
       designation,
-      email
+      email,
+      contact: req.body.contact,
+      status: req.body.status
     });
 
     const savedEmployee = await employee.save();
