@@ -9,6 +9,8 @@ function App() {
   const [department, setDepartment] = useState("");
   const [designation, setDesignation] = useState("");
   const [email, setEmail] = useState("");
+  const [contact, setContact] = useState("");
+  const [status, setStatus] = useState("Active");
   const [employees, setEmployees] = useState([]);
   const [editId, setEditId] = useState(null);
 
@@ -26,6 +28,8 @@ function App() {
             department,
             designation,
             email,
+            contact,
+            status,
           }
         );
 
@@ -38,6 +42,8 @@ function App() {
           department,
           designation,
           email,
+          contact,
+          status,
         });
 
         console.log(response.data);
@@ -49,6 +55,8 @@ function App() {
       setDepartment("");
       setDesignation("");
       setEmail("");
+      setContact("");
+      setStatus("Active");
       setEditId(null);
 
       // Refresh employee list
@@ -72,6 +80,8 @@ function App() {
     setDepartment(employee.department);
     setDesignation(employee.designation);
     setEmail(employee.email);
+    setContact(employee.contact);
+    setStatus(employee.status);
   };
 
   // Delete Employee
@@ -137,6 +147,21 @@ function App() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
+
+        <input
+          type="tel"
+          placeholder="Contact Number"
+          value={contact}
+          onChange={(e) => setContact(e.target.value)}
+        />
+
+        <select
+          value={status}
+          onChange={(e) => setStatus(e.target.value)}
+        >
+          <option value="Active">Active</option>
+          <option value="Left">Left</option>
+        </select>
 
         <button type="submit">
           {editId ? "Update Employee" : "Add Employee"}

@@ -20,7 +20,19 @@ const employeeSchema = new mongoose.Schema(
     email: {
       type: String,
       required: true
-    }
+    },
+
+    contact: {
+      type: String,
+      required: true
+    },
+
+    status: {
+      type: String,
+      enum: ["Active", "Left"],
+      default: "Active",
+      required: true
+}
   },
   {
     timestamps: true
