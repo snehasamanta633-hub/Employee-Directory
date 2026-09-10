@@ -14,6 +14,9 @@ function App() {
   const [employees, setEmployees] = useState([]);
   const [editId, setEditId] = useState(null);
 
+  // Search employee
+  const [search, setSearch] = useState("");
+
   // Add or Update Employee
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -171,26 +174,38 @@ function App() {
       {/* Employee List */}
       <h2>Employee List</h2>
 
+      {/* Search Bar */}
+      <input
+        type="text"
+        placeholder="Search employee by name..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+
       <div>
-        {employees.map((employee) => (
-          <div className="employee-card" key={employee._id}>
-            <h3>{employee.name}</h3>
+        {employees
+          .filter((employee) =>
+            employee.name.toLowerCase().includes(search.toLowerCase())
+          )
+          .map((employee) => (
+            <div className="employee-card" key={employee._id}>
+              <h3>{employee.name}</h3>
 
-            <p>Department: {employee.department}</p>
+              <p>Department: {employee.department}</p>
 
-            <p>Designation: {employee.designation}</p>
+              <p>Designation: {employee.designation}</p>
 
-            <p>Email: {employee.email}</p>
+              <p>Email: {employee.email}</p>
 
-            <button onClick={() => handleEdit(employee)}>
-              Edit
-            </button>
+              <button onClick={() => handleEdit(employee)}>
+                Edit
+              </button>
 
-            <button onClick={() => handleDelete(employee._id)}>
-              Delete
-            </button>
-          </div>
-        ))}
+              <button onClick={() => handleDelete(employee._id)}>
+                Delete
+              </button>
+            </div>
+          ))}
       </div>
     </div>
   );
